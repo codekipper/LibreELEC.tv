@@ -29,7 +29,7 @@ index 0f69f35939755..0b44018361cbf 100644
 +		sound_hdmi: sound_hdmi {
 +			compatible = "simple-audio-card";
 +			simple-audio-card,format = "i2s";
-+			simple-audio-card,name = "allwinner,hdmi";
++			simple-audio-card,name = "allwinner-hdmi";
 +			simple-audio-card,mclk-fs = <256>;
 +
 +			simple-audio-card,codec {
