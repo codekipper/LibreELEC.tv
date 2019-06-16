@@ -53,6 +53,10 @@ devices = \
         'dtb': 'sun8i-h3-libretech-all-h3-cc.dtb',
         'config': 'libretech_all_h3_cc_h3_defconfig'
       },
+      'mxq-4k' : {
+        'dtb' : 'sun8i-h3-mxq-4k.dtb',
+        'config' : 'mxq_4k_defconfig'
+      },
       'nanopi-m1': {
         'dtb': 'sun8i-h3-nanopi-m1.dtb',
         'config': 'nanopi_m1_defconfig'
