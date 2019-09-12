@@ -1,0 +1,40 @@
+diff --git a/sound/soc/sunxi/sun4i-i2s.c b/sound/soc/sunxi/sun4i-i2s.c
+index 0865666af04b..3e1b20c430e0 100644
+--- a/sound/soc/sunxi/sun4i-i2s.c
++++ b/sound/soc/sunxi/sun4i-i2s.c
+@@ -890,29 +890,23 @@ static int sun8i_i2s_set_soc_fmt(struct sun4i_i2s *i2s,
+ {
+ 	u32 mode, val;
+ 
+-	/*
+-	 * DAI clock polarity
+-	 *
+-	 * The setup for LRCK contradicts the datasheet, but under a
+-	 * scope it's clear that the LRCK polarity is reversed
+-	 * compared to the expected polarity on the bus.
+-	 */
++	/* DAI clock polarity */
+ 	switch (fmt & SND_SOC_DAIFMT_INV_MASK) {
+ 	case SND_SOC_DAIFMT_IB_IF:
+ 		/* Invert both clocks */
+-		val = SUN8I_I2S_FMT0_BCLK_POLARITY_INVERTED;
++		val = SUN8I_I2S_FMT0_BCLK_POLARITY_INVERTED |
++		      SUN8I_I2S_FMT0_LRCLK_POLARITY_INVERTED;
+ 		break;
+ 	case SND_SOC_DAIFMT_IB_NF:
+ 		/* Invert bit clock */
+-		val = SUN8I_I2S_FMT0_BCLK_POLARITY_INVERTED |
+-		      SUN8I_I2S_FMT0_LRCLK_POLARITY_INVERTED;
++		val = SUN8I_I2S_FMT0_BCLK_POLARITY_INVERTED;
+ 		break;
+ 	case SND_SOC_DAIFMT_NB_IF:
+ 		/* Invert frame clock */
+-		val = 0;
++		val = SUN8I_I2S_FMT0_LRCLK_POLARITY_INVERTED;
+ 		break;
+ 	case SND_SOC_DAIFMT_NB_NF:
+-		val = SUN8I_I2S_FMT0_LRCLK_POLARITY_INVERTED;
++		val = 0;
+ 		break;
+ 	default:
+ 		return -EINVAL;
