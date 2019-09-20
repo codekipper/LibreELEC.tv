@@ -1,0 +1,25 @@
+From c75f7c15f97312ca2b34307c819973627ee889b0 Mon Sep 17 00:00:00 2001
+From: Marcus Cooper <codekipper@gmail.com>
+Date: Fri, 20 Sep 2019 13:07:22 +0200
+Subject: [PATCH] Hack to force mclk to not divide
+
+---
+ sound/soc/sunxi/sun4i-i2s.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/sound/soc/sunxi/sun4i-i2s.c b/sound/soc/sunxi/sun4i-i2s.c
+index b251161cdfaf..254101e6b419 100644
+--- a/sound/soc/sunxi/sun4i-i2s.c
++++ b/sound/soc/sunxi/sun4i-i2s.c
+@@ -392,7 +392,7 @@ static int sun4i_i2s_set_clk_rate(struct snd_soc_dai *dai,
+ 
+ 	regmap_write(i2s->regmap, SUN4I_I2S_CLK_DIV_REG,
+ 		     SUN4I_I2S_CLK_DIV_BCLK(bclk_div) |
+-		     SUN4I_I2S_CLK_DIV_MCLK(mclk_div));
++		     SUN4I_I2S_CLK_DIV_MCLK(1));
+ 
+ 	regmap_field_write(i2s->field_clkdiv_mclk_en, 1);
+ 
+-- 
+2.23.0
+
