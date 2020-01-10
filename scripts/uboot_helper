@@ -34,6 +34,10 @@ devices = \
         'dtb': 'sun7i-a20-cubietruck.dtb',
         'config': 'Cubietruck_defconfig'
       },
+      'iteadibox': {
+        'dtb': 'sun7i-a20-itead-ibox.dtb',
+        'config': 'Itead_Ibox_A20_defconfig'
+      },
       'lime': {
         'dtb': 'sun7i-a20-olinuxino-lime.dtb',
         'config': 'A20-OLinuXino-Lime_defconfig'
