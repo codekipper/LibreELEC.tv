@@ -1,0 +1,65 @@
+From 70a11c33a608802e5053934ebf90971604e2b847 Mon Sep 17 00:00:00 2001
+From: Marcus Cooper <codekipper@gmail.com>
+Date: Thu, 9 Jan 2020 19:39:28 +0100
+Subject: [PATCH] ARM: dts: sun7i: Enable HDMI support on the Itead Ibox
+
+Enable the display pipeline and HDMI output
+
+Signed-off-by: Marcus Cooper <codekipper@gmail.com>
+---
+ arch/arm/boot/dts/sun7i-a20-itead-ibox.dts | 25 ++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
+
+diff --git a/arch/arm/boot/dts/sun7i-a20-itead-ibox.dts b/arch/arm/boot/dts/sun7i-a20-itead-ibox.dts
+index 946c27278321..070cb3be37da 100644
+--- a/arch/arm/boot/dts/sun7i-a20-itead-ibox.dts
++++ b/arch/arm/boot/dts/sun7i-a20-itead-ibox.dts
+@@ -66,6 +66,17 @@ blue {
+ 		};
+ 	};
+ 
++	hdmi-connector {
++		compatible = "hdmi-connector";
++		type = "a";
++
++		port {
++			hdmi_con_in: endpoint {
++				remote-endpoint = <&hdmi_out_con>;
++			};
++		};
++	};
++
+ 	sound {
+ 		compatible = "simple-audio-card";
+ 		simple-audio-card,name = "On-board SPDIF";
+@@ -94,6 +105,10 @@ &codec {
+ 	status = "okay";
+ };
+ 
++&de {
++	status = "okay";
++};
++
+ &gmac {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&gmac_mii_pins>;
+@@ -108,6 +123,16 @@ phy1: ethernet-phy@1 {
+ 	};
+ };
+ 
++&hdmi {
++	status = "okay";
++};
++
++&hdmi_out {
++	hdmi_out_con: endpoint {
++	remote-endpoint = <&hdmi_con_in>;
++	};
++};
++
+ &i2c0 {
+ 	axp209: pmic@34 {
+ 		interrupt-parent = <&nmi_intc>;
+-- 
+2.24.1
+
